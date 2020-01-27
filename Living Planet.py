@@ -88,6 +88,9 @@ player_horizontal_acceleration_speed = 0
 player_horizontal_acceleration = 0
 movement_horizontal_direction = "none"
 stage_movement_x = 0
+stage_backdrop_movement_1 = [0 - 1280, 0]
+stage_backdrop_movement_2 = [0, 0]
+stage_backdrop_movement_3 = [0 + 1280, 0]
 # endregion
 
 # region Vertical stage movement
@@ -417,7 +420,7 @@ while every_on:  # Anything that updates ever.
         # Moving the mouse:
         if event.type == pygame.MOUSEMOTION:
             pass
-        if event.type == 5:
+        if event.type == pygame.MOUSEBUTTONDOWN:
             if carry_on:
                 # Title screen buttons:
                 if title_screen is True and transition_end_black is False:  # Only on title screen and after a transition has finished can this happen.
@@ -643,14 +646,39 @@ while every_on:  # Anything that updates ever.
 ############################################################################################## Stages ########################################################################
 
         if gameplay is True:
-            if stage == "Stage 1":
-                screen.blit(stage_1_background, (0, 0))
-                screen.blit(stage_1_backdrop, (0 - (stage_movement_x / 8), 0 + (stage_movement_y / 16)))
-            if stage == "Stage 2":
-                screen.blit(stage_2_background, (0, 0))
             stage_movement_x += int(player_horizontal_acceleration)
             stage_movement_y += int(player_vertical_acceleration)
+
+            stage_backdrop_movement_1[0] = (0 - 1280 - (stage_movement_x / 16))
+            stage_backdrop_movement_1[1] = (0 + (stage_movement_y / 32))
+            stage_backdrop_movement_2[0] = (0 - (stage_movement_x / 16))
+            stage_backdrop_movement_2[1] = (0 + (stage_movement_y / 32))
+            stage_backdrop_movement_3[0] = (0 - 1280 + (stage_movement_x / 16))
+            stage_backdrop_movement_3[1] = (0 + (stage_movement_y / 32))
+
+            # Loops the backdrop so that it feels infinite:
+            if stage_backdrop_movement_1[0] < -1280:
+                stage_backdrop_movement_1[0] += 2560
+            elif stage_backdrop_movement_1[0] > 1280:
+                stage_backdrop_movement_1[0] -= 2560
+            if stage_backdrop_movement_2[0] < -1280:
+                stage_backdrop_movement_2[0] += 2560
+            elif stage_backdrop_movement_2[0] > 1280:
+                stage_backdrop_movement_2[0] -= 2560
+            if stage_backdrop_movement_3[0] < -1280:
+                stage_backdrop_movement_3[0] += 2560
+            elif stage_backdrop_movement_3[0] > 1280:
+                stage_backdrop_movement_3[0] -= 2560
+
+            if stage == "Stage 1":
+                screen.blit(stage_1_background, (0, 0))
+                screen.blit(stage_1_backdrop, (stage_backdrop_movement_1[0], stage_backdrop_movement_1[1]))
+                screen.blit(stage_1_backdrop, (stage_backdrop_movement_2[0], stage_backdrop_movement_1[1]))
+                screen.blit(stage_1_backdrop, (stage_backdrop_movement_1[0], stage_backdrop_movement_1[1]))
+            if stage == "Stage 2":
+                screen.blit(stage_2_background, (0, 0))
             screen.blit(stage_surface, (0 - stage_movement_x, 0 + stage_movement_y))
+
             touching_ground = None  # Resets the block sensor (if the player is touching the block).
             gravity_block_2 = False
             gravity_block_3 = False
