@@ -44,11 +44,11 @@ from vector2d import Vector2D
 
 # region [Globals]
 # Misc. globals:
-global block_0, stage, carry_on, gameplay, game_map, map_size_x, map_size_y, player_temp_x, player_temp_y, title_screen
+global block_0, stage, carry_on, gameplay, game_map, map_size_x, map_size_y, player_temp_x, player_temp_y, title_screen, stage_surface, stage_start_adjust_x, player_start_adjust_x, stage_coords, player_coords
 # Controls:
 global player_x, player_y, player_horizontal_acceleration_speed, player_horizontal_acceleration
 global movement_horizontal_direction, stage_movement_x, player_vertical_acceleration, movement_vertical_direction
-global player_vertical_acceleration_speed, stage_movement_y
+global player_vertical_acceleration_speed, stage_movement_y, land_adjust
 # Stage 1:
 global block_1, block_2, block_3, block_4, block_5, block_6, block_7, block_8
 # Stage 2:
@@ -78,6 +78,8 @@ pygame.display.set_caption("Living Planet")
 # region [Definitions]
 # region Misc. definitions.
 stage = "none"
+stage_coords = [0, 0]
+player_coords = [0, 0]
 title_planet_frame = 10
 music_mute = True
 god = False
@@ -91,6 +93,10 @@ stage_movement_x = 0
 stage_backdrop_movement_1 = [0 - 1280, 0]
 stage_backdrop_movement_2 = [0, 0]
 stage_backdrop_movement_3 = [0 + 1280, 0]
+wall_to_right = False
+stage_start_adjust_x = 0
+player_start_adjust_x = stage_start_adjust_x * -1
+left_border_hit = False
 # endregion
 
 # region Vertical stage movement
@@ -99,6 +105,7 @@ player_vertical_acceleration = 0
 movement_vertical_direction = "none"
 stage_movement_y = 0
 touching_ground = True
+land_adjust = 0
 # endregion
 
 # region Transitions
@@ -188,8 +195,6 @@ loading_frame_6 = pygame.transform.scale(loading_frame_6, (72, 72))
 
 # region [Music]
 title_song = pygame.mixer.music.load('Pure Numbness.wav')
-
-
 # endregion
 
 
@@ -272,14 +277,24 @@ def Load_Map(stage):
 
 def Load_Stage():
     # Grabbing the player
-    global player_x, player_y, stage_movement_x, stage_movement_y
+    global map_size_x, map_size_y, player_x, player_y, stage_movement_x, stage_movement_y, stage_surface, stage_start_adjust_x, player_start_adjust_x, stage_coords
+
     player_x = int((player_temp_x - 1) * 50)
     player_y = int((player_temp_y - 1) * 50)
     stage_movement_x = 0
     stage_movement_y = 0
+    stage_coords = [0, 0]
+
+    if 0 >= (0 - float(player_x) + 590):
+        stage_start_adjust_x = (0 - float(player_x) + 590) * -1
+        player_start_adjust_x = stage_start_adjust_x * -1
+
+    stage_surface = pygame.Surface(((map_size_x * 50), (map_size_y * 50)))
+    stage_surface.fill((255, 255, 254))
+    stage_surface.set_colorkey((255, 255, 254))
 
     # Grabbing the blocks
-    global game_map, map_size_x, map_size_y, block_0, stage
+    global game_map, block_0, stage
     if stage == "Stage 1":  # Loads in the blocks in stage 1.
         global block_1, block_2, block_3, block_4, block_5, block_6, block_7, block_8
         block_0 = pygame.image.load('Block 000.png').convert_alpha()
@@ -321,54 +336,54 @@ def Load_Stage():
         for x in range(map_size_x):  # Runs through the map list separating every item in the x axis in every separation line of the y axis.
             if stage == "Stage 1":  # Renders every block in the level and blits it to the stage surface.
                 if game_map[y][x] == '[0]':  # v-- Detects what block goes in which place and blits them. --v
-                    stage_surface.blit(block_0, (((x * 50) - float(player_x) + 590),
+                    stage_surface.blit(block_0, ((((x * 50) - float(player_x) + 590) + stage_start_adjust_x),
                                        ((y * 50) - float(player_y)) + 310))
                 elif game_map[y][x] == '[2]':
-                    stage_surface.blit(block_2, (((x * 50) - float(player_x) + 590),
+                    stage_surface.blit(block_2, ((((x * 50) - float(player_x) + 590) + stage_start_adjust_x),
                                        ((y * 50) - float(player_y)) + 310))
                 elif game_map[y][x] == '[3]':
-                    stage_surface.blit(block_3, (((x * 50) - float(player_x) + 590),
+                    stage_surface.blit(block_3, ((((x * 50) - float(player_x) + 590) + stage_start_adjust_x),
                                        ((y * 50) - float(player_y)) + 310))
                 elif game_map[y][x] == '[4]':
-                    stage_surface.blit(block_4, (((x * 50) - float(player_x) + 590),
+                    stage_surface.blit(block_4, ((((x * 50) - float(player_x) + 590) + stage_start_adjust_x),
                                        ((y * 50) - float(player_y)) + 310))
                 elif game_map[y][x] == '[5]':
-                    stage_surface.blit(block_5, (((x * 50) - float(player_x) + 590),
+                    stage_surface.blit(block_5, ((((x * 50) - float(player_x) + 590) + stage_start_adjust_x),
                                        ((y * 50) - float(player_y)) + 310))
                 elif game_map[y][x] == '[6]':
-                    stage_surface.blit(block_6, (((x * 50) - float(player_x) + 590),
+                    stage_surface.blit(block_6, ((((x * 50) - float(player_x) + 590) + stage_start_adjust_x),
                                        ((y * 50) - float(player_y)) + 310))
                 elif game_map[y][x] == '[7]':
-                    stage_surface.blit(block_7, (((x * 50) - float(player_x) + 590),
+                    stage_surface.blit(block_7, ((((x * 50) - float(player_x) + 590) + stage_start_adjust_x),
                                        ((y * 50) - float(player_y)) + 310))
                 elif game_map[y][x] == '[8]':
-                    stage_surface.blit(block_8, (((x * 50) - float(player_x) + 590),
+                    stage_surface.blit(block_8, ((((x * 50) - float(player_x) + 590) + stage_start_adjust_x),
                                        ((y * 50) - float(player_y)) + 310))
 
             elif stage == "Stage 2":
                 if game_map[y][x] == '[0]':  # v-- Detects what block goes in which place and blits them. --v
-                    stage_surface.blit(block_0, (((x * 50) - float(player_x) + 590),
+                    stage_surface.blit(block_0, ((((x * 50) - float(player_x) + 590) + stage_start_adjust_x),
                                        ((y * 50) - float(player_y)) + 310))
                 elif game_map[y][x] == '[2]':
-                    stage_surface.blit(block_02, (((x * 50) - float(player_x) + 590),
+                    stage_surface.blit(block_02, ((((x * 50) - float(player_x) + 590) + stage_start_adjust_x),
                                        ((y * 50) - float(player_y)) + 310))
                 elif game_map[y][x] == '[3]':
-                    stage_surface.blit(block_03, (((x * 50) - float(player_x) + 590),
+                    stage_surface.blit(block_03, ((((x * 50) - float(player_x) + 590) + stage_start_adjust_x),
                                        ((y * 50) - float(player_y)) + 310))
                 elif game_map[y][x] == '[4]':
-                    stage_surface.blit(block_04, (((x * 50) - float(player_x) + 590),
+                    stage_surface.blit(block_04, ((((x * 50) - float(player_x) + 590) + stage_start_adjust_x),
                                        ((y * 50) - float(player_y)) + 310))
                 elif game_map[y][x] == '[5]':
-                    stage_surface.blit(block_05, (((x * 50) - float(player_x) + 590),
+                    stage_surface.blit(block_05, ((((x * 50) - float(player_x) + 590) + stage_start_adjust_x),
                                        ((y * 50) - float(player_y)) + 310))
                 elif game_map[y][x] == '[6]':
-                    stage_surface.blit(block_06, (((x * 50) - float(player_x) + 590),
+                    stage_surface.blit(block_06, ((((x * 50) - float(player_x) + 590) + stage_start_adjust_x),
                                        ((y * 50) - float(player_y)) + 310))
                 elif game_map[y][x] == '[7]':
-                    stage_surface.blit(block_07, (((x * 50) - float(player_x) + 590),
+                    stage_surface.blit(block_07, ((((x * 50) - float(player_x) + 590) + stage_start_adjust_x),
                                        ((y * 50) - float(player_y)) + 310))
                 elif game_map[y][x] == '[8]':
-                    stage_surface.blit(block_08, (((x * 50) - float(player_x) + 590),
+                    stage_surface.blit(block_08, ((((x * 50) - float(player_x) + 590) + stage_start_adjust_x),
                                        ((y * 50) - float(player_y)) + 310))
 
 
@@ -403,8 +418,6 @@ while every_on:  # Anything that updates ever.
     # To pause/quit the game
     key = pygame.key.get_pressed()
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            every_on = False
         if event.type == pygame.KEYDOWN:
             key = pygame.key.get_pressed()
 
@@ -518,7 +531,7 @@ while every_on:  # Anything that updates ever.
         else:
             if gameplay is False:
                 screen.blit(title_space, (0, 0))
-        # endregionw
+        # endregion
 
         # region [Controls]
 
@@ -546,20 +559,25 @@ while every_on:  # Anything that updates ever.
 
             # region [Right]
             if key[pygame.K_d]:
-                if movement_horizontal_direction != "right":
-                    movement_horizontal_direction = "right"
-                    player_horizontal_acceleration = 0
-                    player_horizontal_acceleration_speed = 0
-                if player_horizontal_acceleration < 15 and movement_horizontal_direction == "right":  # Right.
-                    player_horizontal_acceleration_speed += .08
-                    player_horizontal_acceleration += (.16 + player_horizontal_acceleration_speed)
-                    if player_horizontal_acceleration > 15:  # Max speed.
-                        player_horizontal_acceleration = 15
+                if not wall_to_right:
+                    if movement_horizontal_direction != "right":
+                        movement_horizontal_direction = "right"
+                        player_horizontal_acceleration = 0
                         player_horizontal_acceleration_speed = 0
-            elif player_horizontal_acceleration > 0 and movement_horizontal_direction != "left":  # Idle after moving right.
-                player_horizontal_acceleration_speed += -.08
-                player_horizontal_acceleration += (-.16 + player_horizontal_acceleration_speed)
-                if player_horizontal_acceleration < 0:  # When idle, the acceleration will round to 0 if it is close enough.
+                    if player_horizontal_acceleration < 15 and movement_horizontal_direction == "right":  # Right.
+                        player_horizontal_acceleration_speed += .08
+                        player_horizontal_acceleration += (.16 + player_horizontal_acceleration_speed)
+                        if player_horizontal_acceleration > 15:  # Max speed.
+                            player_horizontal_acceleration = 15
+                            player_horizontal_acceleration_speed = 0
+                elif player_horizontal_acceleration > 0 and movement_horizontal_direction != "left":  # Idle after moving right.
+                    player_horizontal_acceleration_speed += -.08
+                    player_horizontal_acceleration += (-.16 + player_horizontal_acceleration_speed)
+                    if player_horizontal_acceleration < 0:  # When idle, the acceleration will round to 0 if it is close enough.
+                        player_horizontal_acceleration = 0
+                        player_horizontal_acceleration_speed = 0
+
+                if wall_to_right:
                     player_horizontal_acceleration = 0
                     player_horizontal_acceleration_speed = 0
             # endregion
@@ -593,7 +611,6 @@ while every_on:  # Anything that updates ever.
 
                 if touching_ground:
                     player_vertical_acceleration = 0
-                    stage_movement_y = (round(stage_movement_y / 50) * 50)
                 # endregion
 
             if god:
@@ -646,14 +663,22 @@ while every_on:  # Anything that updates ever.
 ############################################################################################## Stages ########################################################################
 
         if gameplay is True:
-            stage_movement_x += int(player_horizontal_acceleration)
+            if stage_coords[0] <= 0 and movement_horizontal_direction is "left":
+                stage_movement_x += int(player_horizontal_acceleration)
+            elif movement_horizontal_direction is "right":
+                stage_movement_x += int(player_horizontal_acceleration)
             stage_movement_y += int(player_vertical_acceleration)
+            land_adjust = 0
 
-            stage_backdrop_movement_1[0] = (0 - 1280 - (stage_movement_x / 16))
+            # region [Backdrop movement]
+            if left_border_hit is False:
+                stage_backdrop_movement_1[0] = (0 - 1280 - (stage_movement_x / 16))
             stage_backdrop_movement_1[1] = (0 + (stage_movement_y / 32))
-            stage_backdrop_movement_2[0] = (0 - (stage_movement_x / 16))
+            if left_border_hit is False:
+                stage_backdrop_movement_2[0] = (0 - (stage_movement_x / 16))
             stage_backdrop_movement_2[1] = (0 + (stage_movement_y / 32))
-            stage_backdrop_movement_3[0] = (0 - 1280 + (stage_movement_x / 16))
+            if left_border_hit is False:
+                stage_backdrop_movement_3[0] = (0 - 1280 + (stage_movement_x / 16))
             stage_backdrop_movement_3[1] = (0 + (stage_movement_y / 32))
 
             # Loops the backdrop so that it feels infinite:
@@ -669,6 +694,7 @@ while every_on:  # Anything that updates ever.
                 stage_backdrop_movement_3[0] += 2560
             elif stage_backdrop_movement_3[0] > 1280:
                 stage_backdrop_movement_3[0] -= 2560
+            # endregion
 
             if stage == "Stage 1":
                 screen.blit(stage_1_background, (0, 0))
@@ -677,65 +703,89 @@ while every_on:  # Anything that updates ever.
                 screen.blit(stage_1_backdrop, (stage_backdrop_movement_1[0], stage_backdrop_movement_1[1]))
             if stage == "Stage 2":
                 screen.blit(stage_2_background, (0, 0))
-            screen.blit(stage_surface, (0 - stage_movement_x, 0 + stage_movement_y))
+
+            # Stage movement.
+            stage_coords[0] = (0 - stage_movement_x) - stage_start_adjust_x
+            if stage_coords[0] >= 0:  # Adjusts the screen to not move past the left border.
+                left_border_hit = True
+                stage_coords[0] = 0
+                player_coords[0] = (590 + stage_movement_x) + stage_start_adjust_x  # Makes the player on screen move instead of the stage.
+            else:
+                left_border_hit = False
+            stage_coords[1] = (0 + stage_movement_y)
+            screen.blit(stage_surface, (stage_coords[0], stage_coords[1]))
 
             touching_ground = None  # Resets the block sensor (if the player is touching the block).
-            gravity_block_2 = False
-            gravity_block_3 = False
-            gravity_block_4 = False
+            wall_to_right = None  # Resets the block sensor (if the player is touching the block).
 
             for y in range(map_size_y):  # Runs through the map list separating every line in the y axis.
                 for x in range(map_size_x):  # Runs through the map list separating every item in the x axis in every separation line of the y axis.
                     if stage == "Stage 1":
-                        if game_map[y][x] == '[2]':
+                        if game_map[y][x] == '[2]':  # Defines the hit box.
+        #  The player's border --v          v-- The selected block's current position --v      \/-- The block's border
                             if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
                                     310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
-                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (660 >= (
-                                    (((x * 50) - float(player_x)) + 590) - stage_movement_x)):  # Defines the hit box.
+                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
+                                    660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
                                 touching_ground = True
                                 stage_movement_y = (round(stage_movement_y / 50) * 50)
-                        elif game_map[y][x] == '[3]':
+                                land_adjust = abs(stage_movement_y - (round(stage_movement_y / 50) * 50))
+                        elif game_map[y][x] == '[3]':  # Defines the hit box.
                             if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
                                     310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
-                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (660 >= (
-                                    (((x * 50) - float(player_x)) + 590) - stage_movement_x)):  # Defines the hit box.
+                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
+                                    660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
                                 touching_ground = True
                                 stage_movement_y = (round(stage_movement_y / 50) * 50)
-                        elif game_map[y][x] == '[4]':
+                                land_adjust = abs(stage_movement_y - (round(stage_movement_y / 50) * 50))
+                        elif game_map[y][x] == '[4]':  # Defines the hit box.
                             if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
                                     310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
-                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (660 >= (
-                                    (((x * 50) - float(player_x)) + 590) - stage_movement_x)):  # Defines the hit box.
+                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
+                                    660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
                                 touching_ground = True
                                 stage_movement_y = (round(stage_movement_y / 50) * 50)
+                                land_adjust = abs(stage_movement_y - (round(stage_movement_y / 50) * 50))
+                        elif game_map[y][x] == '[8]':  # Defines the hit box.
+                            if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
+                                    310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
+                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
+                                    660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
+                                wall_to_right = True
 
                     elif stage == "Stage 2":
-                        if game_map[y][x] == '[2]':
+                        if game_map[y][x] == '[2]':  # Defines the hit box.
                             if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
                                     310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
                                     620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
                                     660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
                                 touching_ground = True
                                 stage_movement_y = (round(stage_movement_y / 50) * 50)
-                        elif game_map[y][x] == '[3]':
+                                land_adjust = abs(stage_movement_y - (round(stage_movement_y / 50) * 50))
+                        elif game_map[y][x] == '[3]':  # Defines the hit box.
                             if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
                                     310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
                                     620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
                                     660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
                                 touching_ground = True
                                 stage_movement_y = (round(stage_movement_y / 50) * 50)
-                        elif game_map[y][x] == '[4]':
+                                land_adjust = abs(stage_movement_y - (round(stage_movement_y / 50) * 50))
+                        elif game_map[y][x] == '[4]':  # Defines the hit box.
                             if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
                                     310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
                                     620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
                                     660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
                                 touching_ground = True
                                 stage_movement_y = (round(stage_movement_y / 50) * 50)
+                                land_adjust = abs(stage_movement_y - (round(stage_movement_y / 50) * 50))
 
             if touching_ground is True:
                 player_vertical_acceleration = 0
 
-            screen.blit(player, (590, 310))  # (x, y) Prints the player at the center of the screen
+            if left_border_hit is True:
+                screen.blit(player, (player_coords[0], 310 - land_adjust))  # (x, y) Moves the player to adjust for stage not moving.
+            else:
+                screen.blit(player, (590, 310 - land_adjust))  # (x, y) Prints the player at the center of the screen
 
 ################################################################################################ Paused ##################################################################################
 
@@ -829,7 +879,7 @@ while every_on:  # Anything that updates ever.
                     pygame.mixer.music.play(-1)
                 else:
                     if stage == "Stage 1":  # v-- Plays music when loading stops. --v
-                        Stage_1 = pygame.mixer.music.load('Living.wav')
+                        Stage_1 = pygame.mixer.music.load('Home World Theme.wav')
                         pygame.mixer.music.play(-1)
                     elif stage == "Stage 2":
                         Stage_1 = pygame.mixer.music.load('Success.wav')
