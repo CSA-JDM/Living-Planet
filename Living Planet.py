@@ -720,7 +720,7 @@ while every_on:  # Anything that updates ever.
 
             for y in range(map_size_y):  # Runs through the map list separating every line in the y axis.
                 for x in range(map_size_x):  # Runs through the map list separating every item in the x axis in every separation line of the y axis.
-                    if stage == "Stage 1":
+                    if stage == "Stage 1" or stage == "Stage 2":
                         if game_map[y][x] == '[2]':  # Defines the hit box.
         #  The player's border --v          v-- The selected block's current position --v      \/-- The block's border
                             if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
@@ -739,45 +739,20 @@ while every_on:  # Anything that updates ever.
                                 stage_movement_y = (round(stage_movement_y / 50) * 50)
                                 land_adjust = abs(stage_movement_y - (round(stage_movement_y / 50) * 50))
                         elif game_map[y][x] == '[4]':  # Defines the hit box.
-                            if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
-                                    310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
-                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
-                                    660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
+                            if (360 <= (((y * 50) - float(player_y)) + 310) + stage_movement_y <= 410) and (
+                                    570 <= (((x * 50) - float(player_x)) + 590) - stage_movement_x <= 660):
                                 touching_ground = True
                                 stage_movement_y = (round(stage_movement_y / 50) * 50)
                                 land_adjust = abs(stage_movement_y - (round(stage_movement_y / 50) * 50))
+                            if (360 <= (((y * 50) - float(player_y)) + 310) + stage_movement_y <= 410) and \
+                                    ((((x * 50) - float(player_x)) + 590) - stage_movement_x <= 660):
+                                wall_to_right = True
                         elif game_map[y][x] == '[8]':  # Defines the hit box.
                             if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
                                     310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
                                     620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
                                     660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
                                 wall_to_right = True
-
-                    elif stage == "Stage 2":
-                        if game_map[y][x] == '[2]':  # Defines the hit box.
-                            if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
-                                    310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
-                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
-                                    660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
-                                touching_ground = True
-                                stage_movement_y = (round(stage_movement_y / 50) * 50)
-                                land_adjust = abs(stage_movement_y - (round(stage_movement_y / 50) * 50))
-                        elif game_map[y][x] == '[3]':  # Defines the hit box.
-                            if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
-                                    310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
-                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
-                                    660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
-                                touching_ground = True
-                                stage_movement_y = (round(stage_movement_y / 50) * 50)
-                                land_adjust = abs(stage_movement_y - (round(stage_movement_y / 50) * 50))
-                        elif game_map[y][x] == '[4]':  # Defines the hit box.
-                            if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
-                                    310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
-                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
-                                    660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
-                                touching_ground = True
-                                stage_movement_y = (round(stage_movement_y / 50) * 50)
-                                land_adjust = abs(stage_movement_y - (round(stage_movement_y / 50) * 50))
 
             if touching_ground is True:
                 player_vertical_acceleration = 0
