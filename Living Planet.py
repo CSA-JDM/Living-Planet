@@ -81,7 +81,7 @@ stage = "none"
 stage_coords = [0, 0]
 player_coords = [0, 0]
 title_planet_frame = 10
-music_mute = True
+music_mute = False
 god = False
 # endregion
 
@@ -90,10 +90,12 @@ player_horizontal_acceleration_speed = 0
 player_horizontal_acceleration = 0
 movement_horizontal_direction = "none"
 stage_movement_x = 0
+max_speed_x = 10
 stage_backdrop_movement_1 = [0 - 1280, 0]
 stage_backdrop_movement_2 = [0, 0]
 stage_backdrop_movement_3 = [0 + 1280, 0]
 wall_to_right = False
+wall_to_left = False
 stage_start_adjust_x = 0
 player_start_adjust_x = stage_start_adjust_x * -1
 left_border_hit = False
@@ -104,6 +106,7 @@ player_vertical_acceleration_speed = 0
 player_vertical_acceleration = 0
 movement_vertical_direction = "none"
 stage_movement_y = 0
+max_speed_y = 15
 touching_ground = True
 land_adjust = 0
 # endregion
@@ -408,10 +411,10 @@ pygame.mixer.music.stop()
 Title_Screen()
 
 while every_on:  # Anything that updates ever.
-    ##    print(clock) #Prints the frame rate.
+    # print(clock)  # Prints the frame rate.
 
     mousexy = pygame.mouse.get_pos()
-    ##    print(mousexy)
+    # print(mousexy)
 
 ############################################################################################ One-tap key input ########################################################################
 
@@ -539,20 +542,25 @@ while every_on:  # Anything that updates ever.
 
             # region [Left]
             if key[pygame.K_a]:
-                if movement_horizontal_direction != "left":
-                    movement_horizontal_direction = "left"
-                    player_horizontal_acceleration = 0
-                    player_horizontal_acceleration_speed = 0
-                if player_horizontal_acceleration > -15 and movement_horizontal_direction == "left":  # Left.
-                    player_horizontal_acceleration_speed += -.08
-                    player_horizontal_acceleration += (-.16 + player_horizontal_acceleration_speed)
-                    if player_horizontal_acceleration < -15:  # Max speed.
-                        player_horizontal_acceleration = -15
+                if not wall_to_left:
+                    if movement_horizontal_direction != "left":
+                        movement_horizontal_direction = "left"
+                        player_horizontal_acceleration = 0
                         player_horizontal_acceleration_speed = 0
-            elif player_horizontal_acceleration < 0 and movement_horizontal_direction != "right":  # Idle after moving left.
-                player_horizontal_acceleration_speed += .08
-                player_horizontal_acceleration += (.16 + player_horizontal_acceleration_speed)
-                if player_horizontal_acceleration > 0:  # When idle, the acceleration will round to 0 if it is close enough.
+                    if player_horizontal_acceleration > -max_speed_x and movement_horizontal_direction == "left":  # Left.
+                        player_horizontal_acceleration_speed += -.08
+                        player_horizontal_acceleration += (-.16 + player_horizontal_acceleration_speed)
+                        if player_horizontal_acceleration < -max_speed_x:  # Max speed.
+                            player_horizontal_acceleration = -max_speed_x
+                            player_horizontal_acceleration_speed = 0
+                elif player_horizontal_acceleration < 0 and movement_horizontal_direction != "right":  # Idle after moving left.
+                    player_horizontal_acceleration_speed += .08
+                    player_horizontal_acceleration += (.16 + player_horizontal_acceleration_speed)
+                    if player_horizontal_acceleration > 0:  # When idle, the acceleration will round to 0 if it is close enough.
+                        player_horizontal_acceleration = 0
+                        player_horizontal_acceleration_speed = 0
+
+                if wall_to_left:
                     player_horizontal_acceleration = 0
                     player_horizontal_acceleration_speed = 0
             # endregion
@@ -564,11 +572,11 @@ while every_on:  # Anything that updates ever.
                         movement_horizontal_direction = "right"
                         player_horizontal_acceleration = 0
                         player_horizontal_acceleration_speed = 0
-                    if player_horizontal_acceleration < 15 and movement_horizontal_direction == "right":  # Right.
+                    if player_horizontal_acceleration < max_speed_x and movement_horizontal_direction == "right":  # Right.
                         player_horizontal_acceleration_speed += .08
                         player_horizontal_acceleration += (.16 + player_horizontal_acceleration_speed)
-                        if player_horizontal_acceleration > 15:  # Max speed.
-                            player_horizontal_acceleration = 15
+                        if player_horizontal_acceleration > max_speed_x:  # Max speed.
+                            player_horizontal_acceleration = max_speed_x
                             player_horizontal_acceleration_speed = 0
                 elif player_horizontal_acceleration > 0 and movement_horizontal_direction != "left":  # Idle after moving right.
                     player_horizontal_acceleration_speed += -.08
@@ -590,21 +598,21 @@ while every_on:  # Anything that updates ever.
                 if key[pygame.K_w]:
                     if touching_ground is True:
                         if player_vertical_acceleration == 0:
-                            player_vertical_acceleration = 15  # This # controls the speed of the jump. (Starting higher and decreasing)
+                            player_vertical_acceleration = max_speed_y  # This # controls the speed of the jump. (Starting higher and decreasing)
                         touching_ground = False
 
                 if not touching_ground:
                     if key[pygame.K_w]:
                         if player_vertical_acceleration > 0:
                             player_vertical_acceleration -= .5  # This # controls how high the player jumps. (The lower the number the higher the jump)
-                        elif player_vertical_acceleration > -15:  # This # controls the speed of the jump. (Starting higher and decreasing)
+                        elif player_vertical_acceleration > -max_speed_y:  # This # controls the speed of the jump. (Starting higher and decreasing)
                             player_vertical_acceleration -= 1
                         elif player_vertical_acceleration > 0:
                             player_vertical_acceleration = 0
                     else:
                         if player_vertical_acceleration > 0:
                             player_vertical_acceleration -= 1  # This # controls how high the player jumps. (The lower the number the higher the jump)
-                        elif player_vertical_acceleration > -15:  # This # controls the speed of the jump. (Starting higher and decreasing)
+                        elif player_vertical_acceleration > -max_speed_y:  # This # controls the speed of the jump. (Starting higher and decreasing)
                             player_vertical_acceleration -= 1
                         elif player_vertical_acceleration > 0:
                             player_vertical_acceleration = 0
@@ -620,11 +628,11 @@ while every_on:  # Anything that updates ever.
                         movement_vertical_direction = "down"
                         player_vertical_acceleration = 0
                         player_vertical_acceleration_speed = 0
-                    if player_vertical_acceleration > -15 and movement_vertical_direction == "down":  # Left.
+                    if player_vertical_acceleration > -max_speed_x and movement_vertical_direction == "down":  # Left.
                         player_vertical_acceleration_speed += -.8
                         player_vertical_acceleration += (-.16 + player_vertical_acceleration_speed)
-                        if player_vertical_acceleration < -15:
-                            player_vertical_acceleration = -15
+                        if player_vertical_acceleration < -max_speed_x:
+                            player_vertical_acceleration = -max_speed_x
                             player_vertical_acceleration_speed = 0
                 elif player_vertical_acceleration < 0 and movement_vertical_direction != "up":  # Idle after moving left.
                     player_vertical_acceleration_speed += .08
@@ -642,11 +650,11 @@ while every_on:  # Anything that updates ever.
                         movement_vertical_direction = "up"
                         player_vertical_acceleration = 0
                         player_vertical_acceleration_speed = 0
-                    if player_vertical_acceleration < 15 and movement_vertical_direction == "up":  # Right.
+                    if player_vertical_acceleration < max_speed_x and movement_vertical_direction == "up":  # Right.
                         player_vertical_acceleration_speed += .08
                         player_vertical_acceleration += (.16 + player_vertical_acceleration_speed)
-                        if player_vertical_acceleration > 15:
-                            player_vertical_acceleration = 15
+                        if player_vertical_acceleration > max_speed_x:
+                            player_vertical_acceleration = max_speed_x
                             player_vertical_acceleration_speed = 0
                 elif player_vertical_acceleration > 0 and movement_vertical_direction != "down":  # Idle after moving right.
                     player_vertical_acceleration_speed += -.08
@@ -668,7 +676,57 @@ while every_on:  # Anything that updates ever.
             elif movement_horizontal_direction is "right":
                 stage_movement_x += int(player_horizontal_acceleration)
             stage_movement_y += int(player_vertical_acceleration)
-            land_adjust = 0
+
+            touching_ground = None  # Resets the block sensor (if the player is touching the block).if stage_movement_x != (round(stage_movement_x / 50) * 50) - 21 and stage_movement_y == (round(stage_movement_y / 50) * 50):
+            wall_to_right = None  # Resets the block sensor (if the player is touching the block).
+            wall_to_left = None  # Resets the block sensor (if the player is touching the block).
+
+            for y in range(map_size_y):  # Runs through the map list separating every line in the y axis.
+                for x in range(map_size_x):  # Runs through the map list separating every item in the x axis in every separation line of the y axis.
+                    if stage == "Stage 1" or stage == "Stage 2":
+                        if game_map[y][x] == '[2]':  # Defines the hit box.
+        #  The player's border --v          v-- The selected block's current position --v      \/-- The block's border
+                            if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
+                                    310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
+                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
+                                    660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
+                                touching_ground = True
+                                stage_movement_y = (round(stage_movement_y / 50) * 50)
+                        elif game_map[y][x] == '[3]':  # Defines the hit box.
+                            if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
+                                    310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
+                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
+                                    660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
+                                touching_ground = True
+                                stage_movement_y = (round(stage_movement_y / 50) * 50)
+                                if (((y * 50) - float(player_y)) + 310) + stage_movement_y <= 409:
+                                    stage_movement_x = (round(stage_movement_x / 50) * 50) + 21
+                                    wall_to_left = True
+                        elif game_map[y][x] == '[4]':  # Defines the hit box.
+                            if (360 <= (((y * 50) - float(player_y)) + 310) + stage_movement_y <= 410) and (
+                                    570 <= (((x * 50) - float(player_x)) + 590) - stage_movement_x <= 660):
+                                touching_ground = True
+                                stage_movement_y = (round(stage_movement_y / 50) * 50)
+                                if (((y * 50) - float(player_y)) + 310) + stage_movement_y <= 409:
+                                    stage_movement_x = (round(stage_movement_x / 50) * 50) - 21
+                                    wall_to_right = True
+                        elif game_map[y][x] == '[7]':  # Defines the hit box.
+                            if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
+                                    310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
+                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
+                                    660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
+                                stage_movement_x = (round(stage_movement_x / 50) * 50) + 21
+                                wall_to_left = True
+                        elif game_map[y][x] == '[8]':  # Defines the hit box.
+                            if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
+                                    310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
+                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
+                                    660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
+                                stage_movement_x = (round(stage_movement_x / 50) * 50) - 21
+                                wall_to_right = True
+
+            if touching_ground is True:
+                player_vertical_acceleration = 0
 
             # region [Backdrop movement]
             if left_border_hit is False:
@@ -715,52 +773,11 @@ while every_on:  # Anything that updates ever.
             stage_coords[1] = (0 + stage_movement_y)
             screen.blit(stage_surface, (stage_coords[0], stage_coords[1]))
 
-            touching_ground = None  # Resets the block sensor (if the player is touching the block).
-            wall_to_right = None  # Resets the block sensor (if the player is touching the block).
-
-            for y in range(map_size_y):  # Runs through the map list separating every line in the y axis.
-                for x in range(map_size_x):  # Runs through the map list separating every item in the x axis in every separation line of the y axis.
-                    if stage == "Stage 1" or stage == "Stage 2":
-                        if game_map[y][x] == '[2]':  # Defines the hit box.
-        #  The player's border --v          v-- The selected block's current position --v      \/-- The block's border
-                            if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
-                                    310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
-                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
-                                    660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
-                                touching_ground = True
-                                stage_movement_y = (round(stage_movement_y / 50) * 50)
-                                land_adjust = abs(stage_movement_y - (round(stage_movement_y / 50) * 50))
-                        elif game_map[y][x] == '[3]':  # Defines the hit box.
-                            if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
-                                    310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
-                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
-                                    660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
-                                touching_ground = True
-                                stage_movement_y = (round(stage_movement_y / 50) * 50)
-                                land_adjust = abs(stage_movement_y - (round(stage_movement_y / 50) * 50))
-                        elif game_map[y][x] == '[4]':  # Defines the hit box.
-                            if (360 <= (((y * 50) - float(player_y)) + 310) + stage_movement_y <= 410) and (
-                                    570 <= (((x * 50) - float(player_x)) + 590) - stage_movement_x <= 660):
-                                touching_ground = True
-                                stage_movement_y = (round(stage_movement_y / 50) * 50)
-                                land_adjust = abs(stage_movement_y - (round(stage_movement_y / 50) * 50))
-                            if (360 <= (((y * 50) - float(player_y)) + 310) + stage_movement_y <= 410) and \
-                                    ((((x * 50) - float(player_x)) + 590) - stage_movement_x <= 660):
-                                wall_to_right = True
-                        elif game_map[y][x] == '[8]':  # Defines the hit box.
-                            if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
-                                    310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
-                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
-                                    660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
-                                wall_to_right = True
-
-            if touching_ground is True:
-                player_vertical_acceleration = 0
-
+            # Player movement.
             if left_border_hit is True:
-                screen.blit(player, (player_coords[0], 310 - land_adjust))  # (x, y) Moves the player to adjust for stage not moving.
+                screen.blit(player, (player_coords[0], 310))  # (x, y) Moves the player to adjust for stage not moving.
             else:
-                screen.blit(player, (590, 310 - land_adjust))  # (x, y) Prints the player at the center of the screen
+                screen.blit(player, (590, 310))  # (x, y) Prints the player at the center of the screen
 
 ################################################################################################ Paused ##################################################################################
 
