@@ -762,9 +762,9 @@ while every_on:  # Anything that updates ever.
             
             ## Setting a frame rate for the loading animation.
             if player_frame >= 12:  # (a) Must be divisible by itself and 10 more than b.
-                player_frame -= 1  # (b) Speed of animation (frame of game/frame of animation) (Bigger # = faster)
+                player_frame -= 2  # (b) Speed of animation (frame of game/frame of animation) (Bigger # = faster)
             else:
-                player_frame = 59  # (c) Must be divisible by itself, first digit must be the number of frames and last digit must be b less than a multiple of 10.
+                player_frame = 58  # (c) Must be divisible by itself, first digit must be the number of frames and last digit must be b less than a multiple of 10.
 
             ## Shows the first digit of the variable responsible for counting frames
             stopper = 0
