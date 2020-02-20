@@ -50,7 +50,7 @@ global player_x, player_y, player_horizontal_acceleration_speed, player_horizont
 global movement_horizontal_direction, stage_movement_x, player_vertical_acceleration, movement_vertical_direction
 global player_vertical_acceleration_speed, stage_movement_y, land_adjust
 # Stage 1:
-global block_1, block_2, block_3, block_4, block_5, block_6, block_7, block_8
+global block_1, block_2, block_3, block_4, block_5, block_6, block_7, block_8, block_w
 # Stage 2:
 global block_01, block_02, block_03, block_04, block_05, block_06, block_07, block_08
 # endregion
@@ -81,6 +81,8 @@ stage = "none"
 stage_coords = [0, 0]
 player_coords = [0, 0]
 title_planet_frame = 10
+player_frame = 1
+face = "right"
 music_mute = False
 god = False
 # endregion
@@ -159,7 +161,7 @@ title_text_highlight = pygame.transform.scale(title_text_highlight, (1280, 720))
 # endregion
 
 ## region [Player]
-player = pygame.image.load('Player T-pose.png').convert_alpha()
+player = pygame.image.load('Player BiggieMC(R) Idle (1).png').convert_alpha()
 player = pygame.transform.scale(player, (100, 100))
 # endregion
 
@@ -182,17 +184,15 @@ loading_screen = pygame.image.load('Loading Screen.png').convert_alpha()
 loading_screen = pygame.transform.scale(loading_screen, (1280, 720))
 
 loading_frame_1 = pygame.image.load('Loading Frame (1).png').convert_alpha()
-loading_frame_1 = pygame.transform.scale(loading_frame_1, (72, 72))
+loading_frame_1 = pygame.transform.scale(loading_frame_1, (90, 90))
 loading_frame_2 = pygame.image.load('Loading Frame (2).png').convert_alpha()
-loading_frame_2 = pygame.transform.scale(loading_frame_2, (72, 72))
+loading_frame_2 = pygame.transform.scale(loading_frame_2, (90, 90))
 loading_frame_3 = pygame.image.load('Loading Frame (3).png').convert_alpha()
-loading_frame_3 = pygame.transform.scale(loading_frame_3, (72, 72))
+loading_frame_3 = pygame.transform.scale(loading_frame_3, (90, 90))
 loading_frame_4 = pygame.image.load('Loading Frame (4).png').convert_alpha()
-loading_frame_4 = pygame.transform.scale(loading_frame_4, (72, 72))
+loading_frame_4 = pygame.transform.scale(loading_frame_4, (90, 90))
 loading_frame_5 = pygame.image.load('Loading Frame (5).png').convert_alpha()
-loading_frame_5 = pygame.transform.scale(loading_frame_5, (72, 72))
-loading_frame_6 = pygame.image.load('Loading Frame (6).png').convert_alpha()
-loading_frame_6 = pygame.transform.scale(loading_frame_6, (72, 72))
+loading_frame_5 = pygame.transform.scale(loading_frame_5, (90, 90))
 # endregion
 # endregion
 
@@ -298,41 +298,41 @@ def Load_Stage():
 
     # Grabbing the blocks
     global game_map, block_0, stage
+    block_0 = pygame.image.load('Block 0.png').convert_alpha()
+    block_0 = pygame.transform.scale(block_0, (50, 50))
     if stage == "Stage 1":  # Loads in the blocks in stage 1.
-        global block_1, block_2, block_3, block_4, block_5, block_6, block_7, block_8
-        block_0 = pygame.image.load('Block 000.png').convert_alpha()
-        block_0 = pygame.transform.scale(block_0, (50, 50))
-        block_2 = pygame.image.load('Block 002.png').convert_alpha()
+        global block_1, block_2, block_3, block_4, block_5, block_6, block_7, block_8, block_w
+        block_2 = pygame.image.load('Block 2.png').convert_alpha()
         block_2 = pygame.transform.scale(block_2, (50, 50))
-        block_3 = pygame.image.load('Block 003.png').convert_alpha()
+        block_3 = pygame.image.load('Block 3.png').convert_alpha()
         block_3 = pygame.transform.scale(block_3, (50, 50))
-        block_4 = pygame.image.load('Block 004.png').convert_alpha()
+        block_4 = pygame.image.load('Block 4.png').convert_alpha()
         block_4 = pygame.transform.scale(block_4, (50, 50))
-        block_5 = pygame.image.load('Block 005.png').convert_alpha()
+        block_5 = pygame.image.load('Block 5.png').convert_alpha()
         block_5 = pygame.transform.scale(block_5, (50, 50))
-        block_6 = pygame.image.load('Block 006.png').convert_alpha()
+        block_6 = pygame.image.load('Block 6.png').convert_alpha()
         block_6 = pygame.transform.scale(block_6, (50, 50))
-        block_7 = pygame.image.load('Block 007.png').convert_alpha()
+        block_7 = pygame.image.load('Block 7.png').convert_alpha()
         block_7 = pygame.transform.scale(block_7, (50, 50))
-        block_8 = pygame.image.load('Block 008.png').convert_alpha()
+        block_8 = pygame.image.load('Block 8.png').convert_alpha()
         block_8 = pygame.transform.scale(block_8, (50, 50))
+        block_w = pygame.image.load('Block w.png').convert_alpha()
+        block_w = pygame.transform.scale(block_w, (50, 50))
     elif stage == "Stage 2":
         global block_01, block_02, block_03, block_04, block_05, block_06, block_07, block_08
-        block_0 = pygame.image.load('Block 000.png').convert_alpha()
-        block_0 = pygame.transform.scale(block_0, (50, 50))
-        block_02 = pygame.image.load('Block 0002.png').convert_alpha()
+        block_02 = pygame.image.load('Block 02.png').convert_alpha()
         block_02 = pygame.transform.scale(block_02, (50, 50))
-        block_03 = pygame.image.load('Block 0003.png').convert_alpha()
+        block_03 = pygame.image.load('Block 03.png').convert_alpha()
         block_03 = pygame.transform.scale(block_03, (50, 50))
-        block_04 = pygame.image.load('Block 0004.png').convert_alpha()
+        block_04 = pygame.image.load('Block 04.png').convert_alpha()
         block_04 = pygame.transform.scale(block_04, (50, 50))
-        block_05 = pygame.image.load('Block 0005.png').convert_alpha()
+        block_05 = pygame.image.load('Block 05.png').convert_alpha()
         block_05 = pygame.transform.scale(block_05, (50, 50))
-        block_06 = pygame.image.load('Block 0006.png').convert_alpha()
+        block_06 = pygame.image.load('Block 06.png').convert_alpha()
         block_06 = pygame.transform.scale(block_06, (50, 50))
-        block_07 = pygame.image.load('Block 0007.png').convert_alpha()
+        block_07 = pygame.image.load('Block 07.png').convert_alpha()
         block_07 = pygame.transform.scale(block_07, (50, 50))
-        block_08 = pygame.image.load('Block 0008.png').convert_alpha()
+        block_08 = pygame.image.load('Block 08.png').convert_alpha()
         block_08 = pygame.transform.scale(block_08, (50, 50))
 
     for y in range(map_size_y):  # Runs through the map list separating every line in the y axis.
@@ -361,6 +361,9 @@ def Load_Stage():
                                        ((y * 50) - float(player_y)) + 310))
                 elif game_map[y][x] == '[8]':
                     stage_surface.blit(block_8, ((((x * 50) - float(player_x) + 590) + stage_start_adjust_x),
+                                       ((y * 50) - float(player_y)) + 310))
+                elif game_map[y][x] == '[w]':
+                    stage_surface.blit(block_w, ((((x * 50) - float(player_x) + 590) + stage_start_adjust_x),
                                        ((y * 50) - float(player_y)) + 310))
 
             elif stage == "Stage 2":
@@ -543,6 +546,7 @@ while every_on:  # Anything that updates ever.
             # region [Left]
             if key[pygame.K_a]:
                 if not wall_to_left:
+                    face = "left"
                     if movement_horizontal_direction != "left":
                         movement_horizontal_direction = "left"
                         player_horizontal_acceleration = 0
@@ -568,6 +572,7 @@ while every_on:  # Anything that updates ever.
             # region [Right]
             if key[pygame.K_d]:
                 if not wall_to_right:
+                    face = "right"
                     if movement_horizontal_direction != "right":
                         movement_horizontal_direction = "right"
                         player_horizontal_acceleration = 0
@@ -671,9 +676,9 @@ while every_on:  # Anything that updates ever.
 ############################################################################################## Stages ########################################################################
 
         if gameplay is True:
-            if stage_coords[0] <= 0 and movement_horizontal_direction is "left":
+            if stage_coords[0] <= 0 and movement_horizontal_direction == "left":
                 stage_movement_x += int(player_horizontal_acceleration)
-            elif movement_horizontal_direction is "right":
+            elif movement_horizontal_direction == "right":
                 stage_movement_x += int(player_horizontal_acceleration)
             stage_movement_y += int(player_vertical_acceleration)
 
@@ -684,46 +689,26 @@ while every_on:  # Anything that updates ever.
             for y in range(map_size_y):  # Runs through the map list separating every line in the y axis.
                 for x in range(map_size_x):  # Runs through the map list separating every item in the x axis in every separation line of the y axis.
                     if stage == "Stage 1" or stage == "Stage 2":
-                        if game_map[y][x] == '[2]':  # Defines the hit box.
-        #  The player's border --v          v-- The selected block's current position --v      \/-- The block's border
-                            if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
-                                    310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
-                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
-                                    660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
-                                touching_ground = True
-                                stage_movement_y = (round(stage_movement_y / 50) * 50)
-                        elif game_map[y][x] == '[3]':  # Defines the hit box.
-                            if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
-                                    310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
-                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
-                                    660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
-                                touching_ground = True
-                                stage_movement_y = (round(stage_movement_y / 50) * 50)
-                                if (((y * 50) - float(player_y)) + 310) + stage_movement_y <= 409:
-                                    stage_movement_x = (round(stage_movement_x / 50) * 50) + 21
-                                    wall_to_left = True
-                        elif game_map[y][x] == '[4]':  # Defines the hit box.
+                        if game_map[y][x] == '[2]' or game_map[y][x] == '[3]' or game_map[y][x] == '[4]':  # Defines the hit box.
+        #  The player's border --v          v-- The selected block's current position --v
                             if (360 <= (((y * 50) - float(player_y)) + 310) + stage_movement_y <= 410) and (
                                     570 <= (((x * 50) - float(player_x)) + 590) - stage_movement_x <= 660):
                                 touching_ground = True
                                 stage_movement_y = (round(stage_movement_y / 50) * 50)
-                                if (((y * 50) - float(player_y)) + 310) + stage_movement_y <= 409:
-                                    stage_movement_x = (round(stage_movement_x / 50) * 50) - 21
-                                    wall_to_right = True
-                        elif game_map[y][x] == '[7]':  # Defines the hit box.
-                            if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
-                                    310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
-                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
-                                    660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
-                                stage_movement_x = (round(stage_movement_x / 50) * 50) + 21
-                                wall_to_left = True
-                        elif game_map[y][x] == '[8]':  # Defines the hit box.
-                            if (410 >= ((((y * 50) - float(player_y)) + 310) + stage_movement_y)) and (
-                                    310 <= ((((y * 50) - float(player_y)) + 310) + stage_movement_y) - 50) and (
-                                    620 <= ((((x * 50) - float(player_x)) + 590) - stage_movement_x) + 50) and (
-                                    660 >= ((((x * 50) - float(player_x)) + 590) - stage_movement_x)):
-                                stage_movement_x = (round(stage_movement_x / 50) * 50) - 21
+                                if game_map[y][x] == '[3]' or game_map[y][x] == '[4]':  # Defines the hit box.
+                                    if (((y * 50) - float(player_y)) + 310) + stage_movement_y <= 409:
+                                        if game_map[y][x] == '[3]':
+                                            stage_movement_x = (round(stage_movement_x / 50) * 50) - 21
+                                            wall_to_right = True
+                                        if game_map[y][x] == '[4]':
+                                            stage_movement_x = (round(stage_movement_x / 50) * 50) + 21
+                                            wall_to_left = True
+                        if (360 <= (((y * 50) - float(player_y)) + 310) + stage_movement_y <= 410) and (
+                                570 <= (((x * 50) - float(player_x)) + 590) - stage_movement_x <= 660):
+                            if game_map[y][x] == '[7]':  # Defines the hit box.
                                 wall_to_right = True
+                            elif game_map[y][x] == '[8]':  # Defines the hit box.
+                                wall_to_left = True
 
             if touching_ground is True:
                 player_vertical_acceleration = 0
@@ -762,7 +747,7 @@ while every_on:  # Anything that updates ever.
             if stage == "Stage 2":
                 screen.blit(stage_2_background, (0, 0))
 
-            # Stage movement.
+            # Stage movement
             stage_coords[0] = (0 - stage_movement_x) - stage_start_adjust_x
             if stage_coords[0] >= 0:  # Adjusts the screen to not move past the left border.
                 left_border_hit = True
@@ -773,7 +758,38 @@ while every_on:  # Anything that updates ever.
             stage_coords[1] = (0 + stage_movement_y)
             screen.blit(stage_surface, (stage_coords[0], stage_coords[1]))
 
-            # Player movement.
+            # Player animation
+            
+            ## Setting a frame rate for the loading animation.
+            if player_frame >= 12:  # (a) Must be divisible by itself and 10 more than b.
+                player_frame -= 1  # (b) Speed of animation (frame of game/frame of animation) (Bigger # = faster)
+            else:
+                player_frame = 59  # (c) Must be divisible by itself, first digit must be the number of frames and last digit must be b less than a multiple of 10.
+
+            ## Shows the first digit of the variable responsible for counting frames
+            stopper = 0
+            for i in str(player_frame):
+                stopper += 1  # Stops in what ever place the # indicates.
+                if stopper == 1:
+                    first_digit = int(i)
+
+            # Blitting the different frames of the loading animation.
+            if face == "right":
+                if first_digit == 1:
+                    player = pygame.image.load('Player BiggieMC(R) Idle (5).png').convert_alpha()
+                elif first_digit == 2:
+                    player = pygame.image.load('Player BiggieMC(R) Idle (4).png').convert_alpha()
+                elif first_digit == 3:
+                    player = pygame.image.load('Player BiggieMC(R) Idle (3).png').convert_alpha()
+                elif first_digit == 4:
+                    player = pygame.image.load('Player BiggieMC(R) Idle (2).png').convert_alpha()
+                elif first_digit == 5:
+                    player = pygame.image.load('Player BiggieMC(R) Idle (1).png').convert_alpha()
+            if face == "left":
+                if first_digit == 1:
+                    player = pygame.image.load('Player BiggieMC(L).png').convert_alpha()
+            player = pygame.transform.scale(player, (100, 100))
+            
             if left_border_hit is True:
                 screen.blit(player, (player_coords[0], 310))  # (x, y) Moves the player to adjust for stage not moving.
             else:
@@ -792,7 +808,7 @@ while every_on:  # Anything that updates ever.
                     if 408 <= mousexy[0] <= 875 and 408 <= mousexy[1] <= 488:
                         screen.blit(title_text_highlight, (0, 104))
                     # Ex-content button
-                    if 408 <= mousexy[0] <= 875 and 508 <= mousexy[1] <= 588:
+                    if 408 <= mousexy[0] <= 875 and 508 <= mousexy[1] <= 588: 
                         screen.blit(title_text_highlight, (0, 204))
                     # Leave button
                     if 408 <= mousexy[0] <= 875 and 612 <= mousexy[1] <= 692:
@@ -806,7 +822,7 @@ while every_on:  # Anything that updates ever.
     # Fading in:
     if transition_start_type == "fast" or transition_start_type == "slow":
         if transition_start_black is True and transition_end_black is False:
-            if opacity < 255:  # max opacity. 
+            if opacity < 255:  # max opacity.
                 opacity += (transition_speed * 2)  # How quickly the transition goes. (shade/frame)
                 transition_screen = pygame.Surface(screen.get_size())
                 transition_screen.fill((0, 0, 0))
@@ -823,7 +839,7 @@ while every_on:  # Anything that updates ever.
                 Load_Stage()
                 pygame.mixer.music.stop()
 
-    # Loading screen:   
+    # Loading screen:
     if transition_timer < transition_time and transition_load_black is True:
         transition_timer += 1
         opacity = 255
@@ -833,10 +849,10 @@ while every_on:  # Anything that updates ever.
 
         # Loading Animation
         ## Setting a frame rate for the loading animation.
-        if loading_frame >= 14:  # Must be divisible by itself.
-            loading_frame -= 4  # Speed of animation (frame of game/frame of animation)
+        if loading_frame >= 12:  # (a) Must be divisible by itself and 10 more than b.
+            loading_frame -= 1  # (b) Speed of animation (frame of game/frame of animation) (Bigger # = faster)
         else:
-            loading_frame = 88  # Must be divisible by itself.
+            loading_frame = 59  # (c) Must be divisible by itself, first digit must be the number of frames and last digit must be b less than a multiple of 10.
 
         ## Shows the first digit of the variable responsible for counting frames
         stopper = 0
@@ -846,18 +862,16 @@ while every_on:  # Anything that updates ever.
                 first_digit = int(i)
 
         # Blitting the different frames of the loading animation.
-        if first_digit == 0:
-            screen.blit(loading_frame_1, (1200, 640))
-        elif first_digit == 1 or first_digit == 9:
-            screen.blit(loading_frame_2, (1200, 640))
-        elif first_digit == 2 or first_digit == 8:
-            screen.blit(loading_frame_3, (1200, 640))
-        elif first_digit == 3 or first_digit == 7:
-            screen.blit(loading_frame_4, (1200, 640))
-        elif first_digit == 4 or first_digit == 6:
-            screen.blit(loading_frame_5, (1200, 640))
+        if first_digit == 1:
+            screen.blit(loading_frame_5, (595, 500))
+        elif first_digit == 2:
+            screen.blit(loading_frame_4, (595, 500))
+        elif first_digit == 3:
+            screen.blit(loading_frame_3, (595, 500))
+        elif first_digit == 4:
+            screen.blit(loading_frame_2, (595, 500))
         elif first_digit == 5:
-            screen.blit(loading_frame_6, (1200, 640))
+            screen.blit(loading_frame_1, (595, 500))
 
     else:  # Passing on the transition phase.
         if transition_load_black is True:
