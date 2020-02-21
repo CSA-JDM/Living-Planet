@@ -788,6 +788,16 @@ while every_on:  # Anything that updates ever.
             if face == "left":
                 if first_digit == 1:
                     player = pygame.image.load('Player BiggieMC(L).png').convert_alpha()
+
+            # Jumping animation.
+            if not touching_ground:
+                if player_vertical_acceleration > 3:  # 
+                     player = pygame.image.load('Player BiggieMC(R) Jump (1).png').convert_alpha()
+                if player_vertical_acceleration <= 3 and player_vertical_acceleration >= -3:
+                     player = pygame.image.load('Player BiggieMC(R) Jump (2).png').convert_alpha()
+                if player_vertical_acceleration < -3:
+                     player = pygame.image.load('Player BiggieMC(R) Jump (3).png').convert_alpha()
+
             player = pygame.transform.scale(player, (100, 100))
             
             if left_border_hit is True:
