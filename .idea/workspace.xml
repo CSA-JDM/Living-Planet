@@ -1,163 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="41972669-4869-4032-9f9a-5163ceff896f" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="41972669-4869-4032-9f9a-5163ceff896f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Living Planet_OpenGL.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Living Planet (GAME FILES)).iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Living Planet (GAME FILES)).iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Block 0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Block 01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Block 02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Block 03.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Block 04.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Block 05.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Block 06.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Block 07.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Block 08.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Block 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Block 2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Block 3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Block 4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Block 5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Block 6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Block 7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Block 8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Block w.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Home World Theme.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Isolated Planet.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LP Outer View Dormant.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level 1.LPM" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level 2.LPM" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Level Test.LPM" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Living Planet.py" beforeDir="false" afterPath="$PROJECT_DIR$/Living Planet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Living.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Loading Frame (1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Loading Frame (2).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Loading Frame (3).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Loading Frame (4).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Loading Frame (5).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Loading Screen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paused Text Alt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paused Text.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player BiggieMC(L).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player BiggieMC(R) Idle (1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player BiggieMC(R) Idle (2).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player BiggieMC(R) Idle (3).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player BiggieMC(R) Idle (4).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player BiggieMC(R) Idle (5).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player BiggieMC(R) Jump (1).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player BiggieMC(R) Jump (2).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player BiggieMC(R) Jump (3).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player BiggieMC(R).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player T-pose.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pure Numbness.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stage 1 Backdrop.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stage 1 Background (2).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stage 1 Background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stage 1.LPM" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stage 2 Background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Stage 2.LPM" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Success.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Title Space.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Title Text Highlight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Title Text.png" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="1463028275">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="13" />
-          <entry key="project.open.time.0" value="1" />
-          <entry key="project.open.time.10" value="1" />
-          <entry key="project.open.time.11" value="4" />
-          <entry key="project.open.time.12" value="3" />
-          <entry key="project.open.time.13" value="1" />
-          <entry key="project.open.time.15" value="1" />
-          <entry key="project.open.time.17" value="2" />
-          <entry key="project.open.time.18" value="1" />
-          <entry key="project.open.time.20" value="1" />
-          <entry key="project.open.time.21" value="1" />
-          <entry key="project.open.time.38" value="1" />
-          <entry key="project.open.time.7" value="1" />
-          <entry key="project.open.time.78" value="1" />
-          <entry key="project.open.time.8" value="1" />
-          <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="22" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="LPM" value="2" />
-          <entry key="png" value="15" />
-          <entry key="py" value="8" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Image" value="15" />
-          <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Python" value="8" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="LPM" value="365" />
-          <entry key="py" value="4332" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="PLAIN_TEXT" value="365" />
-          <entry key="Python" value="4332" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Living Planet.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="793" column="56" lean-forward="true" selection-start-line="793" selection-start-column="56" selection-end-line="793" selection-end-column="56" />
-              <folding>
-                <element signature="n#!!doc" />
-                <element signature="e#2801#2819#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Stage 1.LPM">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="150" selection-start-line="15" selection-start-column="150" selection-end-line="15" selection-end-column="150" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>opacity</find>
-      <find>map_size_y</find>
-      <find>stage</find>
-      <find>gameplay</find>
-      <find>y</find>
-      <find>title_space</find>
-      <find>blit</find>
-      <find>Load_Stage(</find>
-      <find>stage =</find>
-      <find>block_0</find>
-      <find>for</find>
-      <find>while</find>
-      <find>open</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>titlesong</replace>
-      <replace>66</replace>
-      <replace>player_start_adjust_x</replace>
-    </replaceStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/Stage 1.LPM" />
-        <option value="$PROJECT_DIR$/Living Planet.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="953" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
-  </component>
+  <component name="ProjectId" id="1YDijc0UVJDu9KhuXZplLTOS3Qk" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Living Planet (GAME FILES))" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Living Planet (GAME FILES))" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Macbeth_Project/Macbeth_Project.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Sacred\PycharmProjects\Living-Planet-GAME-FILES-" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Living Planet" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -200,93 +128,38 @@
     </task>
     <servers />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.0" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.23101953" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.1778742" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.18872017" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Block 004.png" />
-    <entry file="file://$PROJECT_DIR$/Block 0007.png" />
-    <entry file="file://$PROJECT_DIR$/Block 0005.png" />
-    <entry file="file://$PROJECT_DIR$/Block 0006.png" />
-    <entry file="file://$PROJECT_DIR$/Block 0008.png" />
-    <entry file="file://$PROJECT_DIR$/Block 008.png" />
-    <entry file="file://$PROJECT_DIR$/Level 2 Background.png" />
-    <entry file="file://$PROJECT_DIR$/Level 1 Background.png" />
-    <entry file="file://C:/Program Files (x86)/Python37-32/Lib/site-packages/pygame/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="313" column="4" selection-start-line="313" selection-start-column="4" selection-end-line="313" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1384526572/pygame/surface.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="308" column="8" selection-start-line="308" selection-start-column="8" selection-end-line="308" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Block 0002.png" />
-    <entry file="file://$PROJECT_DIR$/Block 000.png" />
-    <entry file="file://$PROJECT_DIR$/Stage 1 Backdrop.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Stage 1 Background.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Title Space.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Level 1.LPM">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="81" selection-start-line="24" selection-start-column="81" selection-end-line="24" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Paused Text.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Living Planet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="793" column="56" lean-forward="true" selection-start-line="793" selection-start-column="56" selection-end-line="793" selection-end-column="56" />
-          <folding>
-            <element signature="n#!!doc" />
-            <element signature="e#2801#2819#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Stage 1.LPM">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="150" selection-start-line="15" selection-start-column="150" selection-end-line="15" selection-end-column="150" />
-        </state>
-      </provider>
-    </entry>
+  <component name="WindowStateProjectService">
+    <state x="679" y="329" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582486108950">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="679" y="329" key="#com.intellij.fileTypes.FileTypeChooser/-1600.190.1600.870/0.0.1920.1050/1920.180.1600.870@0.0.1920.1050" timestamp="1582486108950" />
+    <state x="740" y="281" key="FileChooserDialogImpl" timestamp="1582485722567">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="740" y="281" key="FileChooserDialogImpl/-1600.190.1600.870/0.0.1920.1050/1920.180.1600.870@0.0.1920.1050" timestamp="1582485722567" />
+    <state width="1921" height="242" key="GridCell.Tab.0.bottom" timestamp="1582488441203">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1921" height="242" key="GridCell.Tab.0.bottom/-1600.190.1600.870/0.0.1920.1050/1920.180.1600.870@0.0.1920.1050" timestamp="1582488441203" />
+    <state width="1921" height="242" key="GridCell.Tab.0.center" timestamp="1582488441203">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1921" height="242" key="GridCell.Tab.0.center/-1600.190.1600.870/0.0.1920.1050/1920.180.1600.870@0.0.1920.1050" timestamp="1582488441203" />
+    <state width="1921" height="242" key="GridCell.Tab.0.left" timestamp="1582488441203">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1921" height="242" key="GridCell.Tab.0.left/-1600.190.1600.870/0.0.1920.1050/1920.180.1600.870@0.0.1920.1050" timestamp="1582488441203" />
+    <state width="1921" height="242" key="GridCell.Tab.0.right" timestamp="1582488441203">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1921" height="242" key="GridCell.Tab.0.right/-1600.190.1600.870/0.0.1920.1050/1920.180.1600.870@0.0.1920.1050" timestamp="1582488441203" />
+    <state x="461" y="168" key="SettingsEditor" timestamp="1582484366410">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="461" y="168" key="SettingsEditor/-1600.190.1600.870/0.0.1920.1050/1920.180.1600.870@0.0.1920.1050" timestamp="1582484366410" />
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1582486450384">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/-1600.190.1600.870/0.0.1920.1050/1920.180.1600.870@0.0.1920.1050" timestamp="1582486450384" />
   </component>
 </project>
