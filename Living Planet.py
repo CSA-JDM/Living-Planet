@@ -403,6 +403,7 @@ paused = False
 pygame.mixer.music.stop()
 Title_Screen()
 
+transition_screen = pygame.Surface(screen.get_size())
 while every_on:  # Anything that updates ever.
     # print(clock)  # Prints the frame rate.
 
@@ -712,8 +713,6 @@ while every_on:  # Anything that updates ever.
 
             if stage == "Stage 1":
                 screen.blit(stage_1_background, (0, 0))
-                # todo determine if below is superfluous or not (is exact copy of line two down)
-                # screen.blit(stage_1_backdrop, (stage_backdrop_movement_1[0], stage_backdrop_movement_1[1]))
                 screen.blit(stage_1_backdrop, (int(stage_backdrop_movement_2[0]), int(stage_backdrop_movement_1[1])))
                 screen.blit(stage_1_backdrop, (int(stage_backdrop_movement_1[0]), int(stage_backdrop_movement_1[1])))
             if stage == "Stage 2":
@@ -737,14 +736,17 @@ while every_on:  # Anything that updates ever.
                 player_frame -= 2  # (b) Speed of animation (frame of game/frame of animation) (Bigger # = faster)
             else:
                 player_frame = 58  # (c) Must be divisible by itself, first digit must be the number of frames and last digit must be b less than a multiple of 10.
+
             # Shows the first digit of the variable responsible for counting frames
             stopper = 0
             for i in str(player_frame):
                 stopper += 1  # Stops in what ever place the # indicates.
                 if stopper == 1:
                     first_digit = int(i)
+
             # Blitting the different frames of the loading animation.
             player = player_idle[face][first_digit - 1]
+
             # Jumping animation.
             if not touching_ground:
                 if player_vertical_acceleration > 3:
@@ -788,8 +790,6 @@ while every_on:  # Anything that updates ever.
         if transition_start_black is True and transition_end_black is False:
             if opacity < 255:  # max opacity.
                 opacity += (transition_speed * 2)  # How quickly the transition goes. (shade/frame)
-                transition_screen = pygame.Surface(screen.get_size())
-                transition_screen.fill((0, 0, 0))
                 if carry_on:
                     transition_screen.set_alpha(opacity)
                 else:
@@ -807,7 +807,8 @@ while every_on:  # Anything that updates ever.
         transition_timer += 1
         opacity = 255
         transition_screen.set_alpha(opacity)
-        screen.blit(transition_screen, (0, 0))
+        # screen.blit(transition_screen, (0, 0))
+        screen.fill((0, 0, 0))
         screen.blit(loading_screen, (0, 0))
 
         # Loading Animation
@@ -859,8 +860,6 @@ while every_on:  # Anything that updates ever.
                 opacity -= (transition_speed * 5)  # How quickly the transition goes. (shade/frame)
             elif transition_end_type == "slow":
                 opacity -= (transition_speed * 2)  # How quickly the transition goes. (shade/frame)
-            transition_screen = pygame.Surface(screen.get_size())
-            transition_screen.fill((0, 0, 0))
             if carry_on:
                 transition_screen.set_alpha(opacity)
             else:
